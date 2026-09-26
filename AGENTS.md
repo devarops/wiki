@@ -40,6 +40,7 @@ Read this: https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catal
 Concept documents live under `bundle/`.
 Root-level `.md` files (README, AGENTS, DOCS, CHANGELOG, TODO) are project infrastructure, not concepts.
 The `raw/` directory holds source documents and is exempt from all checks.
+It is a separate git repository, so sources are versioned independently of this one.
 
 ## Concept document rules
 
