@@ -1,10 +1,12 @@
 # Changelog
 
-All notable changes to this project are documented here.
+Changes to the public interface of the `okf` module, following
+[Keep a Changelog](https://keepachangelog.com/) and
+[Semantic Versioning](https://semver.org/) with 0.y.z — increment the minor
+version for every release.
 
-The format follows [Keep a Changelog](https://keepachangelog.com/).
-This project adheres to [Semantic Versioning](https://semver.org/) with
-0.y.z — increment the minor version for every release.
+Nothing else belongs here. Make targets, specs, and repo conventions are
+internal. Concept content changes are recorded in `log.md`.
 
 ## [Unreleased]
 

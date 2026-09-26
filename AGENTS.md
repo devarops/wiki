@@ -1,67 +1,67 @@
 # LLM Wiki in the Open Knowledge Format
 
+Conventions for agents and developers working in this repo.
+Format rules are deliberately not restated here — see the OKF spec below.
+
 ## Commit style
 
 Prefix every commit with a gitmoji followed by an imperative verb.
-First line under 72 characters.  Blank line then body.
+First line under 72 characters. Blank line then body.
 TDD phases: `🛑 🧪` (Red), `✅ 🧪` (Green), `♻️` (Refactor).
 Config/tooling: `🔧`, lint fix: `🚨`, goal update: `🎯`.
 
-## Package structure
+## Repo layout
 
-Validation logic lives in the `okf/` Python package (not a standalone script).
-Entry point: `okf.validate(path="bundle")` — returns a list of error strings.
-Prints `🎉 OK! No errors found` to stdout when the bundle is clean.
-Required fields: `type`, `title`, `description` — checked for presence and
-non-empty value via a lookup table in `okf/validate.py`.
+| Path | Contents |
+|------|----------|
+| `bundle/` | Concept documents. The only directory the validator checks. |
+| `raw/` | Source documents. A separate git repo, skipped by all checks. |
+| `log.md` | Change log for concept content. |
+| `okf/` | Validation package. Entry point `okf.validate()`. |
+| `specs/` | Machine-provable specification, checked by `make verify`. |
+| `tests/data/` | One non-conformant fixture per violation. |
 
-## Test fixtures
+Root-level `.md` files (README, AGENTS, DOCS, CHANGELOG, TODO) are project
+infrastructure, not concepts.
 
-Non-conformant concept documents go under `tests/data/`.
-Each file tests one violation (e.g. missing type, empty value, missing title).
-The fixture directory `tests/data/` is validated by most tests.
+This is an OKF conformant personal LLM Wiki. The format specification is:
+
+<https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/refs/heads/main/okf/SPEC.md>
+
+Read the spec for format rules. Do not duplicate them into this file.
+
+## Documentation ownership
+
+| File | Holds |
+|------|-------|
+| `README.md` | Project overview for readers. |
+| `DOCS.md` | API and CLI reference. |
+| `TODO.md` | Backlog, plus design notes for unwritten work. |
+| `specs/` | Rules that are machine-provable and verified. |
+| `log.md` | What changed in the concept content. |
+
+Do not restate a rule in two files. Link instead.
 
 ## Developer workflow
 
-- `make setup` — clean build caches, install package in editable mode.
-- `make tests` — run `pytest --verbose tests` inside the `okf_ci` Docker container.
-- `docker exec okf_ci make tests` — run tests if container is already running.
-- `make validate` — run `okf.validate()` on the default `bundle/` directory.
+Run everything inside the `wiki_ci` container; `python` and `qed` are not on
+the host.
+
+- `make setup` — clean caches, install the package in editable mode.
+- `make tests` — run the test suite.
+- `make validate` — check `bundle/` against the implemented rules.
+- `make verify` — check `specs/` criteria against the test suite.
 - `make check` — lint (black, flake8, mypy) across `okf/` and `tests/`.
 - `make format` — auto-format with black.
 - `make clean` — remove `tests/__pycache__` (root-owned from Docker runs).
+- `docker exec wiki_ci make <target>` — re-run a target in the running container.
 
----
+`validate` and `verify` answer different questions. `validate` asks whether the
+content is conformant; `verify` asks whether the validator implements the
+specification. A green `validate` does not mean the spec is satisfied — see
+`TODO.md` for what is still unimplemented.
 
-## Repo identity
+## Tests
 
-This is an OKF conformant personal LLM Wiki.
-Read this: https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/refs/heads/main/okf/SPEC.md
-Concept documents live under `bundle/`.
-Root-level `.md` files (README, AGENTS, DOCS, CHANGELOG, TODO) are project infrastructure, not concepts.
-The `raw/` directory holds source documents and is exempt from all checks.
-It is a separate git repository, so sources are versioned independently of this one.
-
-## Concept document rules
-
-| Rule | Constraint |
-|------|-----------|
-| Frontmatter | Parseable YAML delimited by `---`. |
-| Required fields | `type` (non-empty string), `title` (≤10 words), `description` (≤20 words). |
-| Optional fields | `resource` (A URI that uniquely identifies the underlying asset the concept describes), `tags` (YAML list of short strings for cross-cutting categorization), `timestamp` (ISO 8601 datetime of last meaningful change) |
-| Body prose | One sentence per line. Each sentence ≤25 words. Total ≤200 words. |
-| Filename | Pattern `xy.xy...xy.md` where each segment is a digit (`x`) plus optional trailing letter (`y`). For instance: `1a.2b.md`, `1a.3.md`, `4.md` |
-
-## Cross-links
-
-Every markdown link in a concept body must resolve to an existing `.md` file in the bundle.
-Broken links are errors.
-External URLs are skipped.
-Links in `index.md` and `log.md` are not checked.
-
-## Reserved files
-
-- `index.md` — no frontmatter.  Root `index.md` may contain only
-  `okf_version` in its frontmatter.
-- `log.md` — date headings must be ISO 8601 (`YYYY-MM-DD`).
-  Warn on bold prefixes outside the conventional set.
+Each file in `tests/data/` breaks exactly one rule, so a test names the rule it
+covers. Most tests validate the fixture directory as a whole.
