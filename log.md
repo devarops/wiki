@@ -11,4 +11,4 @@
 - **Creation**: Added ["Acceptance Test Driven Development"](bundle/2c.md) from raw/atdd-guide.pdf.
 
 ## 2026-10-08
-- **Creation**: Added ["Elements of Style for Paragraphs"](bundle/1a.1.md) from raw/strunk1918elements.pdf.
+- **Creation**: Added ["Elements of Style for Paragraphs"](bundle/4.md) from raw/strunk1918elements.pdf.
