@@ -13,3 +13,6 @@
 ## 2026-10-08
 - **Creation**: Added ["Elements of Style for Paragraphs"](bundle/4.md) from raw/strunk1918elements.pdf.
 - **Creation**: Added ["Authorship-Preserving AI Assistance"](bundle/4a.md) from the author's ideas.
+
+## 2026-10-15
+- **Creation**: Added ["Private Companion Repository"](bundle/5.md) from the author's ideas.
