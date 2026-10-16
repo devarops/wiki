@@ -5,7 +5,7 @@
 - **Creation**: Added ["Genetic Algorithm"](bundle/2b.md) from https://en.wikipedia.org/wiki/Genetic_algorithm.
 
 ## 2026-06-26
-- **Creation**: Added ["Utilization Distribution Overlap Index (UDOI)"](bundle/3.md) from ~/repositorios/bycatch_thesis/references/fieberg2005quantifying.pdf.
+- **Creation**: Added ["Utilization Distribution Overlap Index (UDOI)"](bundle/3.md) from ~/repositorios/albatross-bycatch-mexico/references/fieberg2005quantifying.pdf.
 
 ## 2026-06-27
 - **Creation**: Added ["Acceptance Test Driven Development"](bundle/2c.md) from raw/atdd-guide.pdf.
