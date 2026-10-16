@@ -7,7 +7,7 @@ name = "concept-fields"
 
 [[criteria]]
 description = """
-Title field must be 10 words or shorter. A title exceeding 10 words
+Title field must be 8 words or shorter. A title exceeding 8 words
 is an error.
 """
 
@@ -17,8 +17,8 @@ run = "pytest tests/ -k 'title_word_count or title_length'"
 
 [[criteria]]
 description = """
-Description field must be 20 words or shorter. A description exceeding
-20 words is an error.
+Description field must be 16 words or shorter. A description exceeding
+16 words is an error.
 """
 
 [criteria.verify]
