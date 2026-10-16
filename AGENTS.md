@@ -30,6 +30,27 @@ This is an OKF conformant personal LLM Wiki. The format specification is:
 
 Read the spec for format rules. Do not duplicate them into this file.
 
+## Public interface
+
+The public interface is the outermost surface an end user consumes. Here it is the
+`okf` package API, whose entry point is `okf.validate()`.
+
+`DOCS.md` lists its current elements. `CHANGELOG.md` records only changes to an
+element listed there. Make targets, specs, repo conventions, and concept content
+are internal.
+
+## Tags
+
+Every concept carries tags drawn from four facets. Choose from these values first;
+propose a new tag only as a last resort.
+
+| Facet | Values |
+|-------|--------|
+| `tools` | `git`, `lean-language`, `wiki` |
+| `domain` | `ai`, `writing`, `bycatch` |
+| `method` | `atdd-bdd`, `continuous-delivery`, `tdd` |
+| `concern` | `privacy`, `accountability`, `reproducibility` |
+
 ## Documentation ownership
 
 | File | Holds |
