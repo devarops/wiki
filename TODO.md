@@ -16,12 +16,15 @@ deterministically machine-provable. Status: ✅ done, ❌ not started.
 | Filename convention | — | ❌ |
 | Reserved files | `reserved-files` | ❌ |
 | Concept field limits | `concept-fields` | ❌ |
+| Tag vocabulary | — | ❌ |
 | Cross-link resolution | — | ❌ |
 | Prose style | — | ❌ |
 | Error output | `error-output` | ❌ |
 
-The last five are deterministically testable and are candidates for new
-`specs/` files, so that `make verify` covers them.
+The five phases with no spec — file discovery, filename convention, tag
+vocabulary, cross-link resolution, and prose style — are deterministically
+testable.
+Each is a candidate for a new `specs/` file, so that `make verify` covers it.
 
 ## File discovery
 
@@ -37,6 +40,11 @@ Examples: `2.md`, `3a.md`, `1a.2b.md`. Reserved and project files are exempt.
 `AGENTS.md` used to describe one trailing letter per segment. That is narrower
 than what `next_child_filename` produces, and the description was dropped rather
 than corrected — restore it once the convention settles.
+
+## Tag vocabulary
+
+`AGENTS.md` lists the four facets and their values. The validator does not check
+a concept's tags against that list yet; a tag outside it should be an error.
 
 ## Cross-link resolution
 
