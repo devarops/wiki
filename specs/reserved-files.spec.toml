@@ -1,4 +1,4 @@
-#:schema ../docs/spec.schema.json
+#:schema https://raw.githubusercontent.com/tskovlund/qed/main/docs/spec.schema.json
 
 name = "reserved-files"
 
