@@ -65,7 +65,7 @@ Do not restate a rule in two files. Link instead.
 
 ## Developer workflow
 
-Run everything inside the `wiki_ci` container; `python` and `qed` are not on
+Run everything inside the `wiki_dev` container; `python` and `qed` are not on
 the host.
 
 - `make setup` — clean caches, install the package in editable mode.
@@ -75,7 +75,7 @@ the host.
 - `make check` — lint (black, flake8, mypy) across `okf/` and `tests/`.
 - `make format` — auto-format with black.
 - `make clean` — remove `tests/__pycache__` (root-owned from Docker runs).
-- `docker exec wiki_ci make <target>` — re-run a target in the running container.
+- `docker exec wiki_dev make <target>` — re-run a target in the running container.
 
 `validate` and `verify` answer different questions. `validate` asks whether the
 content is conformant; `verify` asks whether the validator implements the
